@@ -1,0 +1,97 @@
+# Lang
+language: en
+
+# Dark Mode
+dark: false
+
+# Header
+menu:
+  Home: /
+  Archives: /archives
+  About: /about
+  RSS: /atom.xml
+
+# Your Feed Location
+#rss: /atom.xml
+
+# Content
+fancybox: true
+
+
+# Miscellaneous
+google_analytics:
+favicon: https://i.loli.net/2018/10/04/5bb4ee167428b.jpg
+twitter:
+google_plus:
+fb_admins:
+fb_app_id:
+
+
+# Profile
+nickname: pfn
+description: 绝对不要看，眼睛里的郁金香
+
+# Load fontawesome icons? Also see the links option
+icons: false
+
+sns_icons: true
+
+# Footer area links
+# NOTICE) If you set "icons: false" link names will be clear text
+# If "icons: true" link names will interpreted as fontawesome icon names
+# NOTICE) Use the fontawesome icon names without the fa- prefix (http://fontawesome.io/cheatsheet/)
+links:
+  Blog: /archives
+  RSS: /atom.xml
+
+sns_links:
+  telegram: https://t.me/PerfectForNi
+  twitter: https://twitter.com/PerfectForNi
+  instagram: https://www.instagram.com/perfectforni
+  github: https://github.com/PerfectForNi
+  weibo: https://weibo.com/PerfectForNi
+
+# nav position (top, left. top is default)
+nav: top
+
+# Info
+archive_footer_content: All articles are under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>.
+post_footer_content: All articles are under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>.
+
+# Gitment
+gitment:
+  owner:
+  repo:
+  client:
+    id:
+    secret:
+
+# Utterances
+# NOTICE) make sure the app is installed on the repo before using this commit system
+# see https://utteranc.es/ for more
+utterances:
+  enable: false
+  repo: # your repo in this format: 'username/reponame', note that there is no '.git' suffix
+
+# If you want to use valine,you should get the appId and appKey form https://leancloud.cn ,more setting please see https://valine.js.org
+valine:
+  enable: false # !!if you want use valine comment system,please set enable: true
+  appId:  #your leancloud appId
+  appKey:  #your leancloud appKey
+  guest_info: nick,mail,link #valine comment header info
+  placeholder: Just go go # valine comment input placeholder(like: Please leave your footprints )
+  avatar: mm # gravatar style https://valine.js.org/avatar
+  pageSize: 10 # comment list page size
+  verify: false # valine verify code (true/false)
+  notify: false # valine mail notify (true/false)
+  lang: zh-cn
+
+# Donate
+donate:
+  enable: false
+  github: https://github.com/geekplux
+  paypal: https://www.paypal.me/geekplux
+  bitcoin: 1AVngxh56oLvAzXsEFnzccUohZdHswjC7j
+  BTCQR: http://7b1evr.com1.z0.glb.clouddn.com/donate/bitcoin.png
+  AliPayQR: http://7b1evr.com1.z0.glb.clouddn.com/donate/alipayQR.jpg
+  WeChatQR: http://7b1evr.com1.z0.glb.clouddn.com/donate/wechatQR.jpg
