@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Oracle 存储过程基础 | PerfectForNi&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="开发环境：PL/SQL Developer.  查看 Oracle 版本相关信息：select * from v$version;  创建存储过程标准语法CREATE [OR REPLACE] PROCEDURE procedure_name[(parameter_name [IN | OUT | IN OUT] &amp;lt;type&amp;gt; [, ...])]&amp;#123;IS | AS&amp;#125;">
+<meta name="keywords" content="oracle,SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 存储过程基础">
+<meta property="og:url" content="https://perfectforni.github.io/2018/03/31/oracle-procedure-foundation/index.html">
+<meta property="og:site_name" content="PerfectForNi&#39;s Blog">
+<meta property="og:description" content="开发环境：PL/SQL Developer.  查看 Oracle 版本相关信息：select * from v$version;  创建存储过程标准语法CREATE [OR REPLACE] PROCEDURE procedure_name[(parameter_name [IN | OUT | IN OUT] &amp;lt;type&amp;gt; [, ...])]&amp;#123;IS | AS&amp;#125;">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://i.loli.net/2018/10/04/5bb4ef4d1162b.png">
+<meta property="og:updated_time" content="2018-10-04T06:24:05.368Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 存储过程基础">
+<meta name="twitter:description" content="开发环境：PL/SQL Developer.  查看 Oracle 版本相关信息：select * from v$version;  创建存储过程标准语法CREATE [OR REPLACE] PROCEDURE procedure_name[(parameter_name [IN | OUT | IN OUT] &amp;lt;type&amp;gt; [, ...])]&amp;#123;IS | AS&amp;#125;">
+<meta name="twitter:image" content="https://i.loli.net/2018/10/04/5bb4ef4d1162b.png">
+  
+  
+    <link rel="icon" href="https://i.loli.net/2018/10/04/5bb4ee167428b.jpg">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+  <link rel="stylesheet" href="/css/donate.css">
+  
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  
+</head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-oracle-procedure-foundation" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+    <div class="mobile-nav">
+      <h1 class="nickname">pfn</h1>
+      <a id="menu">
+        &#9776; Menu
+      </a>
+    </div>
+    
+        <nav id="main-nav" class="main-nav">
+    
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+      <a class="main-nav-link" href="/atom.xml">RSS</a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Oracle 存储过程基础
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <p>开发环境：PL/SQL Developer.</p>
+<ul>
+<li>查看 Oracle 版本相关信息：<code>select * from v$version</code>;</li>
+</ul>
+<h2 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h2><h3 id="标准语法"><a href="#标准语法" class="headerlink" title="标准语法"></a>标准语法</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> [<span class="keyword">OR</span> <span class="keyword">REPLACE</span>] <span class="keyword">PROCEDURE</span> procedure_name</span><br><span class="line">[(parameter_name [<span class="keyword">IN</span> | <span class="keyword">OUT</span> | <span class="keyword">IN</span> <span class="keyword">OUT</span>] &lt;<span class="keyword">type</span>&gt; [, ...])]</span><br><span class="line">&#123;<span class="keyword">IS</span> | <span class="keyword">AS</span>&#125;</span><br><span class="line">    [<span class="keyword">declare</span> <span class="keyword">variable</span>]</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    &lt;procedure_body&gt;</span><br><span class="line">    [<span class="keyword">EXCEPTION</span> <span class="keyword">exception</span> handlers]</span><br><span class="line"><span class="keyword">END</span> procedure_name;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>procedure_name: 存储过程名称。</li>
+<li>[OR REPLACE] 为可选语法。表示如果已经存在该存储过程，则进行修改和覆盖。</li>
+<li>parameter_name: 参数。参数是可选的，它由参数名，参数类型和数据类型组成。<ul>
+<li>参数类型有三种，分别为 <code>IN, OUT, IN OUT</code>。<ul>
+<li>IN 表示输入参数，可以理解为一个只读常量，它是按引用传递的，同时它也是默认的参数类型；</li>
+<li>OUT 表示输出参数，它是按值传递的变量，作为输出结果；</li>
+<li>IN OUT 即可作输入参数，也可作输出参数，它也是按值传递的变量。</li>
+</ul>
+</li>
+<li>对于参数的数据类型，注意不能指定数据类型的具体长度或精度，比如 VARCHAR2(10) 是不被允许的，只能用 VARCHAR2。此外，还可以使用 <strong>DEFAULT</strong> 关键字给参数声明默认值（仅支持 IN 类型的参数）。例如：<code>parameter_name IN VARCHAR2 DEFAULT &#39;default_value&#39;</code>.</li>
+</ul>
+</li>
+<li>{IS | AS}: 二选一。该关键字开始到 BEGIN 之间的 [declare variable] 是可选的，可用于声明存储过程中要用到的变量。</li>
+<li>procedure_body: 存储过程的逻辑执行部分。</li>
+<li>[EXCEPTION exception handlers] 为异常处理块，可选。</li>
+</ul>
+<h3 id="完整语法低清无码图"><a href="#完整语法低清无码图" class="headerlink" title="完整语法低清无码图"></a>完整语法低清无码图</h3><p><img src="https://i.loli.net/2018/10/04/5bb4ef4d1162b.png" alt="procedure syntax"></p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PROCEDURE</span> hello</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    DBMS_OUTPUT.PUT_LINE(<span class="string">'Hello World!'</span>); <span class="comment">-- 打印 Hello World!</span></span><br><span class="line"><span class="keyword">END</span> hello;</span><br></pre></td></tr></table></figure>
+<h2 id="一些基本操作"><a href="#一些基本操作" class="headerlink" title="一些基本操作"></a>一些基本操作</h2><p>使用 <code>:=</code> 对变量进行赋值。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">variable := 'value';</span><br></pre></td></tr></table></figure>
+<p>使用 <code>||</code> 拼接字符串。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">you := 'na' || 'i' || 've';</span><br></pre></td></tr></table></figure>
+<p>执行 sql 语句，使用关键字 <code>into</code> 将结果赋值给变量。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(<span class="number">1</span>) <span class="keyword">into</span> <span class="keyword">variable</span> <span class="keyword">FROM</span> <span class="keyword">TABLE</span> <span class="keyword">WHERE</span> column1 = param1;</span><br><span class="line"><span class="keyword">SELECT</span> column1, column2 <span class="keyword">into</span> variable1, variable2 <span class="keyword">FROM</span> <span class="keyword">TABLE</span>; <span class="comment">-- 给多个变量赋值</span></span><br></pre></td></tr></table></figure>
+<p>使用 <code>execute immediate</code> 执行动态 sql 语句，并用 <code>using</code> 进行<strong>顺序</strong>传参。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">dynamic_column := 'column1';</span><br><span class="line">dynamic_sql := '<span class="keyword">UPDATE</span> <span class="keyword">TABLE</span> <span class="keyword">SET</span> <span class="string">' || dynamic_column || '</span> = :<span class="number">1</span> <span class="keyword">WHERE</span> column2 = :<span class="number">2</span> <span class="string">';</span></span><br><span class="line"><span class="string">EXECUTE IMMEDIATE dynamic_sql USING param1, param2;</span></span><br></pre></td></tr></table></figure>
+<p>在以上这段动态 sql 语句中，参数 param1 和 param2 将会按照顺序依次放到 <code>:1</code> 和 <code>:2</code> 的位置上。</p>
+<h2 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h2><h3 id="IF"><a href="#IF" class="headerlink" title="IF"></a>IF</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">IF &lt;condition1&gt; THEN</span><br><span class="line">    &lt;statements to execute when condition1 is true&gt;</span><br><span class="line">ELSIF &lt;condition2&gt; THEN</span><br><span class="line">    &lt;statements to execute when condition2 is true&gt;</span><br><span class="line">ELSE</span><br><span class="line">    &lt;statements to execute when both condition1 and condition2 are false&gt;</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">IF</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意不要漏掉 <code>THEN</code> 关键字。</li>
+<li>可以有多个 ELSIF，但最多有一个 ELSE。</li>
+<li>当 IF 和所有的 ELSIF 的条件都是 false 时，才执行 ELSE 块。</li>
+<li>ELSIF 和 ELSE 都是可选的。</li>
+</ul>
+<h3 id="CASE"><a href="#CASE" class="headerlink" title="CASE"></a>CASE</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">CASE &lt;selector&gt;</span><br><span class="line">    WHEN &lt;expression1&gt; THEN &lt;statements to execute&gt;</span><br><span class="line">    WHEN &lt;expression2&gt; THEN &lt;statements to execute&gt;</span><br><span class="line">    ...</span><br><span class="line">    ELSE &lt;statements to execute&gt;</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">CASE</span>;</span><br></pre></td></tr></table></figure>
+<p>如果 selector 的值和某个 WHEN 块的 expression 相等，则执行该块，否则，将执行 ELSE 块。ELSE 是可选的，如果不声明一个 ELSE 块，则默认带上一个隐式的 ELSE 块 <code>ELSE RAISE CASE_NOT_FOUND;</code>，意思是如果没有匹配到任何一个 WHEN 块，则抛出 <code>CASE_NOT_FOUND</code> 的异常。举个栗子：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">grade := 'D';</span><br><span class="line">CASE grade</span><br><span class="line">    WHEN 'A' THEN DBMS_OUTPUT.PUT_LINE('Perfect');</span><br><span class="line">    WHEN 'B' THEN DBMS_OUTPUT.PUT_LINE('Good');</span><br><span class="line">    WHEN 'C' THEN DBMS_OUTPUT.PUT_LINE('Poor');</span><br><span class="line">    ELSE DBMS_OUTPUT.PUT_LINE('No such grade');</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">CASE</span>;</span><br></pre></td></tr></table></figure>
+<p>显然，打印的结果为 No such grade。</p>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><h3 id="loop-循环"><a href="#loop-循环" class="headerlink" title="loop 循环"></a>loop 循环</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">LOOP</span><br><span class="line">    &lt;statements to execute&gt;</span><br><span class="line">    [EXIT [WHEN condition];]</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br></pre></td></tr></table></figure>
+<p><code>[EXIT [WHEN condition];]</code> 是可选的；若不带上 EXIT 则相当于一个死循环，所以一般使用 <code>EXIT</code> 配合 <code>WHEN</code> 条件来跳出整个循环，如下：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">LOOP</span><br><span class="line">    variable := variable + 1;</span><br><span class="line">    EXIT WHEN variable &gt; 10; -- 当 variable 的值大于 10 时，跳出循环</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="while-循环"><a href="#while-循环" class="headerlink" title="while 循环"></a>while 循环</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">WHILE &lt;condition&gt;</span><br><span class="line">LOOP</span><br><span class="line">    &lt;statements to execute&gt;</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br></pre></td></tr></table></figure>
+<p>如果条件为 true，则执行 loop 块里的逻辑；如果条件为 false，则退出整个循环；如果条件一开始就是 false，则循环体一次也不会执行。</p>
+<h3 id="for-循环"><a href="#for-循环" class="headerlink" title="for 循环"></a>for 循环</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">FOR &lt;loop_counter&gt; IN [REVERSE] &lt;lowest_number&gt;..&lt;highest_number&gt;</span><br><span class="line">LOOP</span><br><span class="line">    &lt;statements to execute&gt;</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br></pre></td></tr></table></figure>
+<p>需要注意的是 <code>REVERSE</code> 关键字，它是可选的，如果声明为 REVERSE，则循环将反向计数！举个栗子：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">FOR i IN REVERSE 1..5</span><br><span class="line">LOOP</span><br><span class="line">    result := i * 2;</span><br><span class="line">    DBMS_OUTPUT.PUT_LINE(result);</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br></pre></td></tr></table></figure>
+<p>由于是反向计数，所以打印出来的结果依次为：10, 8, 6, 4, 2。</p>
+<h3 id="使用-cursor-游标循环"><a href="#使用-cursor-游标循环" class="headerlink" title="使用 cursor 游标循环"></a>使用 cursor 游标循环</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">FOR &lt;record_index&gt; in &lt;cursor_name&gt;</span><br><span class="line">LOOP</span><br><span class="line">    &lt;statements to execute&gt;</span><br><span class="line"><span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br></pre></td></tr></table></figure>
+<p>举个栗子：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PROCEDURE</span> test_cursor_loop</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">    <span class="keyword">CURSOR</span> test_c <span class="keyword">IS</span> <span class="keyword">SELECT</span> column1, column2 <span class="keyword">FROM</span> <span class="keyword">TABLE</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">FOR</span> test_record <span class="keyword">IN</span> test_c</span><br><span class="line">    <span class="keyword">LOOP</span></span><br><span class="line">        DBMS_OUTPUT.PUT_LINE(test_record.column1 || test_record.column2);</span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">LOOP</span>;</span><br><span class="line"><span class="keyword">END</span> test_cursor_loop;</span><br></pre></td></tr></table></figure>
+<p>在这个栗子中，我们首先定义了一个游标 test_c，从表中查出了包含 column1 和 column2 字段的所有数据放到该游标中，然后循环。test_record 为每条记录，通过 test_record.column_name 获取到具体的字段。当游标中所有的数据都被取出来后，则结束该循环。</p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><ul>
+<li>一些常见的系统异常：<blockquote>
+<p>NO_DATA_FOUND: 没有查询到数据。<br>TOO_MANY_ROWS: 预期拿到一条数据，却返回了多条数据。<br>ZERO_DIVIDE: 除数为 0。</p>
+</blockquote>
+</li>
+<li>自定义异常：声明 <code>exception_name EXCEPTION;</code>。</li>
+<li>使用关键字 <code>RAISE</code> 抛出一个自定义异常： <code>RAISE exception_name;</code>。</li>
+<li>捕获异常并处理：<code>EXCEPTION WHEN exception_name THEN &lt;exception handlers&gt;</code>。</li>
+</ul>
+<p>举个栗子：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">PROCEDURE</span> test_exception (param <span class="keyword">IN</span> <span class="built_in">NUMBER</span>)</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line">    test_e <span class="keyword">EXCEPTION</span>;</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">IF</span> param = <span class="number">0</span> <span class="keyword">THEN</span></span><br><span class="line">        DBMS_OUTPUT.PUT_LINE(<span class="string">'No exception!'</span>);</span><br><span class="line">    ELSE</span><br><span class="line">        RAISE test_e;</span><br><span class="line">    <span class="keyword">END</span> <span class="keyword">IF</span>;</span><br><span class="line"></span><br><span class="line">    EXCEPTION</span><br><span class="line">        WHEN test_e THEN DBMS_OUTPUT.PUT_LINE('Throw test_e exception!');</span><br><span class="line">        WHEN OTHERS THEN DBMS_OUTPUT.PUT_LINE('Throw other exception!');</span><br><span class="line"><span class="keyword">END</span> test_exception;</span><br></pre></td></tr></table></figure>
+<p>在这个栗子中，我们自定义了一个名叫 test_e 的异常，并在逻辑代码里说明当参数 param 不等于 0 时，则抛出该异常，最后在异常处理块中进行捕获和处理。注意，异常处理块中的 <code>OTHERS</code> 代表的是除了 test_e 异常外的所有异常。</p>
+<h2 id="执行存储过程"><a href="#执行存储过程" class="headerlink" title="执行存储过程"></a>执行存储过程</h2><h3 id="普通调用"><a href="#普通调用" class="headerlink" title="普通调用"></a>普通调用</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    procedure_name(param1, param2...);</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<p>无参数的存储过程可以使用括号也可以不使用，即 procedure_name; 或 procedure_name();</p>
+<h3 id="指定参数调用"><a href="#指定参数调用" class="headerlink" title="指定参数调用"></a>指定参数调用</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span></span><br><span class="line">    V1 VARCHAR2(<span class="number">2</span>) := <span class="string">'v1'</span>;</span><br><span class="line">    V2 VARCHAR2(2) := 'v2';</span><br><span class="line">    V3 NUMBER(1);</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    procedure_name(param1 =&gt; V1, param2 =&gt; V2, param3 =&gt; V3);</span><br><span class="line"><span class="keyword">END</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="删除存储过程"><a href="#删除存储过程" class="headerlink" title="删除存储过程"></a>删除存储过程</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> procedure_name;</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://docs.oracle.com/cd/B19306_01/server.102/b14200/statements_6009.htm" target="_blank" rel="noopener">CREATE PROCEDURE</a></li>
+<li><a href="https://www.tutorialspoint.com/plsql/plsql_procedures.htm" target="_blank" rel="noopener">PL/SQL - Procedures</a></li>
+<li><a href="https://www.techonthenet.com/oracle/procedures.php" target="_blank" rel="noopener">Oracle / PLSQL: Procedures</a></li>
+<li><a href="https://docs.oracle.com/database/121/LNPLS/fundamentals.htm#LNPLS002" target="_blank" rel="noopener">PL/SQL Language Fundamentals</a></li>
+</ul>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2018/03/31/oracle-procedure-foundation/" class="article-date">
+  <time datetime="2018-03-30T16:00:00.000Z" itemprop="datePublished">2018-03-31</time>
+</a>
+
+        </li>
+        
+          <li>
+            <span class="label">Category:</span>
+            
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/rookie/">rookie</a>
+  </div>
+
+
+          </li>
+        
+        
+          <li>
+            <span class="label">Tag:</span>
+            
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL/">SQL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/oracle/">oracle</a></li></ul>
+
+
+          </li>
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2018/02/05/choose-license/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">开源协议，了解一下</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>All articles are under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>.</p>
+
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

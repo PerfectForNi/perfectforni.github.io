@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>PerfectForNi&#39;s Blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://perfectforni.github.io/"/>
+  <updated>2018-10-04T06:24:05.368Z</updated>
+  <id>https://perfectforni.github.io/</id>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Oracle 存储过程基础</title>
+    <link href="https://perfectforni.github.io/2018/03/31/oracle-procedure-foundation/"/>
+    <id>https://perfectforni.github.io/2018/03/31/oracle-procedure-foundation/</id>
+    <published>2018-03-30T16:00:00.000Z</published>
+    <updated>2018-10-04T06:24:05.368Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;开发环境：PL/SQL Developer.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;查看 Oracle 版本相关信息：&lt;code&gt;select * from v$version&lt;/code&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;创建存储过程&quot;&gt;&lt;a href=&quot;#创建存储过程&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="rookie" scheme="https://perfectforni.github.io/categories/rookie/"/>
+    
+    
+      <category term="oracle" scheme="https://perfectforni.github.io/tags/oracle/"/>
+    
+      <category term="SQL" scheme="https://perfectforni.github.io/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>开源协议，了解一下</title>
+    <link href="https://perfectforni.github.io/2018/02/05/choose-license/"/>
+    <id>https://perfectforni.github.io/2018/02/05/choose-license/</id>
+    <published>2018-02-04T16:00:00.000Z</published>
+    <updated>2018-10-04T06:24:05.368Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;常用协议&quot;&gt;&lt;a href=&quot;#常用协议&quot; class=&quot;headerlink&quot; title=&quot;常用协议&quot;&gt;&lt;/a&gt;常用协议&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;最宽松的佛系协议：&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="foo" scheme="https://perfectforni.github.io/categories/foo/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Markdown Tutorial</title>
+    <link href="https://perfectforni.github.io/2018/01/23/markdown-tutorial/"/>
+    <id>https://perfectforni.github.io/2018/01/23/markdown-tutorial/</id>
+    <published>2018-01-22T16:00:00.000Z</published>
+    <updated>2018-10-06T12:02:40.916Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;什么是-Markdown&quot;&gt;&lt;a href=&quot;#什么是-Markdown&quot; class=&quot;headerlink&quot; title=&quot;什么是 Markdown&quot;&gt;&lt;/a&gt;什么是 Markdown&lt;/h2&gt;&lt;p&gt;Markdown 是一种轻量级标记语言，它由 &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="rookie" scheme="https://perfectforni.github.io/categories/rookie/"/>
+    
+    
+      <category term="Markdown" scheme="https://perfectforni.github.io/tags/Markdown/"/>
+    
+      <category term="tools" scheme="https://perfectforni.github.io/tags/tools/"/>
+    
+  </entry>
+  
+</feed>
