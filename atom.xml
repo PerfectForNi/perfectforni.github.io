@@ -6,10 +6,35 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://perfectforni.github.io/"/>
-  <updated>2018-10-04T06:24:05.368Z</updated>
+  <updated>2018-12-31T15:05:13.046Z</updated>
   <id>https://perfectforni.github.io/</id>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2018 summary</title>
+    <link href="https://perfectforni.github.io/2018/12/31/2018-summary/"/>
+    <id>https://perfectforni.github.io/2018/12/31/2018-summary/</id>
+    <published>2018-12-30T16:00:00.000Z</published>
+    <updated>2018-12-31T15:05:13.046Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;时间过得真快，感觉已经失控了。我已经能想象得到，眼睛一睁一闭，两脚一伸，就…就又过去一年了
+        
+      
+    
+    </summary>
+    
+      <category term="summary" scheme="https://perfectforni.github.io/categories/summary/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Oracle 存储过程基础</title>
