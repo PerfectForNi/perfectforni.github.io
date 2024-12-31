@@ -29,6 +29,8 @@ title: About Me
 ## 喜欢的东西
 - Forza Juve ~
 - 平凡的世界
+- 陶喆(David Tao)
+- 实况足球 eFootball
 - SLAM DUNK(スラムダンク)
 - 后摇
 - Podcasts
